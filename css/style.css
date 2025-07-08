@@ -1,0 +1,982 @@
+/* ✅ Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Manufacturing+Consent&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* ✅ Root: define base size for rem */
+:root {
+  --bg-black-900: #0a192f;
+  --bg-black-700: #112240;
+  --bg-black-100: #233554;
+  --bg-black-50: #8892b0;
+  --bg-black-900-light: #ccd6f6;
+  --skin-color: #64ffda;
+  --text-black-700: #8892b0;
+
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.load{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);
+  /*change these sizes to fit into your project*/
+  width:100px;
+  height:100px;
+}
+.load hr{border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite}
+
+.load :first-child{background:#112240;animation-delay:-1.5s}
+.load :nth-child(2){background:#233554;animation-delay:-1s}
+.load :nth-child(3){background:#64ffda;animation-delay:-0.5s}
+.load :last-child{background:whitesmoke}
+
+@keyframes spin{
+  0%,100%{transform:translate(0)}
+  25%{transform:translate(160%)}
+  50%{transform:translate(160%, 160%)}
+  75%{transform:translate(0, 160%)}
+}
+body {
+  font-size: 1.6rem; /* was 16px */
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  background: var(--bg-black-900);
+  color: var(--bg-black-900-light);
+  overflow-x: hidden;
+}
+.preloader {
+  position: fixed;
+  inset: 0; /* same as top:0; left:0; right:0; bottom:0 */
+  background: var(--bg-black-900); /* or any color you want */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.load {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px; height: 100px;
+  opacity: 1;
+  transition: opacity 1s ease;
+  z-index: 9999; /* Make sure it sits above everything */
+}
+
+.load.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ✅ Universal */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ✅ Layout */
+.main-container {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 20rem; /* 200px => 20rem */
+  width: calc(100% - 20rem);
+  padding: 1.5rem;
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.padd-15 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ✅ Sidebar */
+.aside {
+  width: 20rem; /* 200px => 20rem */
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--bg-black-900);
+  border-right: 0.1rem solid var(--bg-black-100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  white-space: nowrap;
+  padding: 0.5rem;
+}
+
+.profile-info {
+  width: 100%;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  padding-left: 1rem;
+  text-align: left;
+}
+
+.profile-name {
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 1rem;
+  color: var(--bg-black-900-light);
+}
+
+.profile-title {
+  font-size: 1.4rem;
+  padding-left: 1rem;
+  color: var(--text-black-700);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.aside .nav {
+  margin-top: 4rem;
+}
+
+.sidebar-nav {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-nav li {
+  margin-bottom: 2.5rem;
+}
+
+.sidebar-nav a {
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  padding-left: 2rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav a::before {
+  content: '';
+  position: absolute;
+  bottom: -0.3rem;
+  left: 0;
+  width: 0%;
+  height: 0.2rem;
+  background-color: var(--skin-color);
+  transition: width 0.3s ease;
+}
+
+.sidebar-nav a:hover::before {
+  width: 100%;
+}
+
+.sidebar-nav a:hover {
+  color: var(--skin-color);
+}
+
+.sidebar-nav a.active {
+  color: var(--skin-color);
+  font-weight: 700;
+}
+
+.sidebar-nav a.active::before {
+  width: 100%;
+}
+
+/* ✅ Buttons */
+.btn {
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 1.2rem 3.5rem;
+  border-radius: 4rem;
+  display: inline-block;
+  background: var(--skin-color);
+  color: var(--bg-black-700);
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.shadow-dark {
+  box-shadow: 0 0 2rem rgba(20, 19, 49, 0.973);
+}
+@media (max-width: 1199px) {
+  .aside {
+    left: -27rem; /* hide sidebar */
+  }
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+/* === HOME SECTION === */
+
+.home-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  background: var(--bg-black-900);
+  color: var(--bg-black-900-light);
+  padding-top: 2rem;
+}
+
+.home-section .container {
+  max-width: 110rem; /* 1100px => 110rem */
+  width: 100%;
+}
+
+.home-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.home-section .home-info {
+  flex: 0 0 55%;
+  max-width: 55%;
+  padding: 2rem;
+}
+
+.home-section .home-img {
+  flex: 0 0 30%;
+  max-width: 30%;
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.home-section .home-img img {
+  border-radius: 1rem;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  box-shadow: 0 0 3rem rgba(15, 48, 40, 0.4);
+}
+
+.home-section .home-img img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+h3.hello {
+  font-size: 2.8rem;
+  margin: 1.5rem 0;
+}
+
+h3.hello span {
+  font-family: 'Poppins', cursive;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--skin-color);
+}
+
+h3.my-profession {
+  font-size: 3rem;
+  margin: 1.5rem 0;
+}
+
+.typing {
+  color: var(--skin-color);
+}
+
+.home-info p {
+  margin-bottom: 7rem;
+  font-size: 1.8rem;
+  color: var(--text-black-700);
+}
+
+.img-wrapper {
+  background-color: #1a283f;
+  border: 0.2rem solid var(--skin-color);
+  padding: 1rem;
+  border-radius: 0.4rem;
+  display: inline-block;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 2rem rgba(5, 32, 26, 0.3);
+}
+
+.img-wrapper:hover {
+  transform: translateY(-1rem);
+  box-shadow: 0 0 4rem rgba(5, 61, 48, 0.6);
+}
+
+.img-wrapper img {
+  display: block;
+  border-radius: 0.4rem;
+}
+
+/* ✅ Responsive hero */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  .aside {
+    left: -22rem;
+  }
+  .home-section .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 3rem;
+  }
+  .home-section .home-info,
+  .home-section .home-img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .home-section .home-img {
+    margin-top: 3rem;
+  }
+}
+/* === ABOUT SECTION === */
+
+.about-section .container {
+  padding: 4rem 0 7rem 0;
+}
+
+.about-section .section-title {
+  flex: 0 0 80%;
+  max-width: 100%;
+  margin-bottom: 6rem;
+}
+
+.section-title h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+  position: relative;
+}
+
+.section-title h2::before {
+  content: '';
+  height: 0.4rem;
+  width: 5rem;
+  background: var(--skin-color);
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.section-title h2::after {
+  content: '';
+  height: 0.4rem;
+  width: 2.5rem;
+  background: var(--skin-color);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.8rem;
+}
+
+.about-section .about-content {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.about-section .about-content .about-text h3 {
+  font-size: 2.4rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+}
+
+.about-section .about-content .about-text p {
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  color: var(--text-black-700);
+}
+
+.about-section .about-content .personal-info {
+  flex: 0 0 60%;
+  max-width: 60%;
+  margin-top: 4rem;
+}
+
+.about-section .about-content .personal-info .info-item {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.about-section .about-content .personal-info .info-item p {
+  font-weight: 600;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  border-bottom: 0.1rem solid var(--bg-black-50);
+}
+
+.about-section .about-content .personal-info .info-item p span {
+  font-weight: 400;
+  color: var(--text-black-700);
+  margin-left: 0.4rem;
+}
+
+.about-section .about-content .personal-info .buttons {
+  margin-top: 3rem;
+}
+
+.about-section .about-content .personal-info .buttons .btn {
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+}
+
+.about-section .about-content .skills {
+  flex: 1 1 40%;
+  max-width: 40%;
+  margin-top: 4rem; /* taller spacing on top */
+  display: flex;
+  flex-direction: column;
+  gap: 3rem; /* more gap between skills */
+}
+
+.about-section .about-content .skills .skill-item {
+  width: 100%;
+  position: relative;
+}
+
+.about-section .about-content .skills .skill-item h5 {
+  font-size: 1.6rem;  /* bigger skill titles */
+  font-weight: 600;
+  line-height: 3rem; /* more breathing room */
+  margin-bottom: 0.8rem;
+  color: var(--text-black-900);
+}
+
+.about-section .about-content .skills .skill-item .progress {
+  background: var(--bg-black-50);
+  height: 1rem; /* thicker progress bar */
+  border-radius: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.about-section .about-content .skills .skill-item .progress .progress-in {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 0.5rem;
+  background: var(--skin-color);
+}
+
+.about-section .about-content .skills .skill-item .skill-percent {
+  position: absolute;
+  right: 0;
+  top: -2.5rem; /* lifted to fit bigger bar */
+  font-size: 1.2rem; /* larger percentage text */
+  font-weight: 500;
+  color: var(--text-black-900);
+}
+@media (max-width: 768px) {
+  .about-section .about-content .skills {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-top: 3rem;
+  }
+}
+.education-section .section-title {
+  padding-top: 3rem;
+  margin-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+.education-content .education {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-top: 3rem;
+}
+
+.education-content h3.title {
+  font-size: 2.4rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+}
+
+.education-content .timeline-box {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 1.5rem;
+  padding-bottom: 25rem;
+}
+
+.education-content .timeline {
+  background: var(--bg-black-900);
+  padding: 3rem 1.5rem;
+  border: 0.1rem solid var(--bg-black-50);
+  border-radius: 1rem;
+  position: relative;
+}
+
+.education-content .timeline .timeline-item {
+  position: relative;
+  padding-left: 3.7rem;
+  padding-bottom: 5rem;
+}
+
+.education-content .timeline .timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.education-content .timeline .timeline-item::before {
+  content: '';
+  width: 0.1rem;
+  height: 100%;
+  position: absolute;
+  left: 0.7rem;
+  top: 0;
+  background: var(--skin-color);
+}
+
+.education-content .timeline .circle-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--skin-color);
+}
+
+.education-content .timeline .timeline-date {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-black-700);
+}
+
+.education-content .timeline .timeline-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+}
+
+.education-content .timeline .timeline-text {
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  text-align: justify;
+  color: var(--text-black-700);
+}
+
+/* ✅ Responsive fix for small screens */
+@media (max-width: 768px) {
+  .education-content .timeline {
+    padding: 2rem 1rem;
+  }
+
+  .education-content .timeline .timeline-item {
+    padding-left: 3rem;
+  }
+}
+
+/* === PROJECTS SECTION === */
+
+/* -------------------------------------------
+   ✅ Project Section Base Styles
+------------------------------------------- */
+
+.project-container {
+  max-width: 100rem;
+  margin: 5rem auto;
+}
+
+.project {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  margin: 3rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.project.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.project-content {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  position: relative;
+  z-index: 2;
+  padding: 4rem;
+  color: #eee;
+}
+
+.project-content .project-label {
+  color: var(--skin-color);
+  font-family: monospace;
+}
+.project-section .section-title
+{
+  padding-top: 3rem;
+  padding-left: 15px;
+  justify-content: flex-start;
+}
+.project-content .project-title {
+  font-size: 2rem;
+  margin: 1rem 0 3rem;
+}
+
+.project-content .project-details {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+.project-content .project-details p {
+  background: var(--bg-black-700);
+  padding: 2rem 2.5rem;
+  border-radius: 0.4rem;
+}
+
+.project-content .project-details ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.project-content .project-details ul li {
+  margin-right: 2rem;
+  font-family: monospace;
+}
+
+.project-img {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.project-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 0 0 3rem var(--bg-black-700);
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.project-img img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+
+/* -------------------------------------------
+   ✅ Project Section Title (unchanged)
+------------------------------------------- */
+
+.project-title {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 6rem;
+}
+
+.project-title h2 {
+  text-align: left;
+  margin-left: -4rem;
+  font-size: 3.5rem;
+  padding-top: 5rem;
+  color: var(--text-black-900);
+  font-weight: 700;
+  position: relative;
+}
+
+.project-title h2::before {
+  content: '';
+  height: 0.4rem;
+  width: 5rem;
+  background: var(--skin-color);
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.project-title h2::after {
+  content: '';
+  height: 0.4rem;
+  width: 2.5rem;
+  background: var(--skin-color);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.8rem;
+}
+
+
+/* -------------------------------------------
+   ✅ Large Screens Layout
+------------------------------------------- */
+
+@media screen and (min-width: 76.9rem) {
+
+  /* Normal project layout */
+  .project-content {
+    grid-column: 1 / 7;
+    color: white;
+    padding: 4rem;
+  }
+
+  .project-img {
+    grid-column: 6 / -1;
+    padding: 2rem;
+  }
+
+  /* ✅ Reversed project layout */
+  .project.reverse .project-content {
+    grid-column: 7 / -1;  
+    color: white;  /* Text on right */
+    text-align: right;      /* Align text right */
+  }
+
+  .project.reverse .project-img {
+    grid-column: 1 / 8; 
+    justify-content: center;    /* Image on left */
+    padding: 2rem;          /* Same as normal */
+  }
+
+  .project.reverse .project-details p {
+    text-align: right;      /* Paragraph right-aligned */
+  }
+
+  .project.reverse .project-details ul {
+  display: flex;           /* Just to be safe */
+  flex-wrap: wrap;         /* Keep wrapping */
+  flex-direction: row-reverse;
+  justify-content: flex-start;  /* Important! When you row-reverse, justify-start pushes to the right */
+  margin-top: 2rem;
+}
+
+.project.reverse .project-details ul li {
+  text-align: right;
+}
+
+
+}
+
+
+/* -------------------------------------------
+   ✅ Mobile Fallback Layout
+------------------------------------------- */
+
+@media screen and (max-width: 76.8rem) {
+  .project-content {
+    grid-column: 1 / -1;
+    padding: 4rem 2rem;
+  }
+
+  .project-img {
+    grid-column: 1 / -1;
+  }
+
+  .project-content .project-details p {
+    background: var(--bg-black-100);
+  }
+}
+
+
+/* === CONTACT SECTION === */
+
+.contact-section .section-title {
+  padding-top: 3rem;
+}
+
+.contact-title {
+  color: var(--skin-color);
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.contact-sub-title {
+  color: var(--text-black-900);
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 6rem;
+}
+
+.contact-section .contact-info-item {
+  flex: 0 0 25%;
+  max-width: 25%;
+  text-align: center;
+  margin-bottom: 6rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ICON */
+.contact-section .contact-info-item .icon {
+  font-size: 2.5rem;
+  color: var(--skin-color);
+}
+
+/* Heading */
+.contact-section .contact-info-item h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* Paragraph */
+.contact-section .contact-info-item p {
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  color: var(--text-black-700);
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+  .contact-section .contact-info-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section .contact-info-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.contact-section .contact-form {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.contact-section .form-item-col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  margin-bottom: 3rem;
+}
+
+.contact-section .form-item-col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 3rem;
+}
+
+.contact-section .form-item-col-6 .form-control,
+.contact-section .form-item-col-12 .form-control {
+  width: 100%;
+  height: 5rem;
+  border-radius: 2rem;
+  background: var(--bg-black-100);
+  border: 0.1rem solid var(--bg-black-50);
+  padding: 1rem 2.5rem;
+  font-size: 1.6rem;
+  color: var(--text-black-700);
+}
+
+.contact-section .form-item-col-12 textarea.form-control {
+  height: 14rem;
+}
+
+.contact-section .contact-form .btn {
+  height: 5rem;
+  padding: 0 5rem;
+}
+.aside .social-fixed {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1000;
+}
+
+.aside .social-fixed .social-line {
+  width: 4rem;
+  height: 0.2rem;
+  background: var(--skin-color);
+}
+
+.aside .social-fixed .social-icons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.aside .social-fixed .social-icon {
+  width: 2rem;
+  height: 2rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(0) invert(1);
+}
+
+.aside .social-fixed a:hover .social-icon {
+  transform: scale(1.2);
+  filter: brightness(0) saturate(100%) invert(66%) sepia(76%) saturate(2175%) hue-rotate(120deg);
+}
+/* ====================================
+   ✅ Universal Scroll Reveal Animation 
+   ==================================== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
