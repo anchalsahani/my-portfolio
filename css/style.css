@@ -3,13 +3,13 @@
 
 /* ✅ Root: define base size for rem */
 :root {
-  --bg-black-900: #0a192f;
-  --bg-black-700: #112240;
-  --bg-black-100: #233554;
-  --bg-black-50: #8892b0;
-  --bg-black-900-light: #ccd6f6;
+  --bg-black-900: #021024;
+  --bg-black-700: #0c2b58;
+  --bg-black-100: #5483B3;
+  --bg-black-50: #7DA0CA;
+  --bg-black-900-light: #D5DEEF;
   --skin-color: #64ffda;
-  --text-black-700: #8892b0;
+  --text-black-700: #F0F3FA;
 
   font-size: 62.5%; /* 1rem = 10px */
 }
