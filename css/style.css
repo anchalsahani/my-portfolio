@@ -1020,3 +1020,105 @@ h3.my-profession {
   opacity: 1;
   transform: translateY(0);
 }
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: var(--text-black-700);
+}
+
+@media screen and (max-width: 76.8rem) {
+  .project-content {
+    grid-column: 1 / -1;
+    padding: 4rem 2rem;
+  }
+
+  .project-img {
+    grid-column: 1 / -1;
+  }
+
+  .project-content .project-details p {
+    background: var(--bg-black-100);
+  }
+}
+
+/* ✅ Enhanced Mobile Styles */
+@media screen and (max-width: 768px) {
+
+  .project-container {
+    margin: 2rem 1rem;
+  }
+
+  .project {
+    grid-template-columns: 1fr;
+    margin: 2rem 1rem;
+    gap: 2rem;
+  }
+
+  .project-content {
+    padding: 2rem 1rem;
+    text-align: left;
+  }
+
+  .project-img {
+    padding: 0;
+    margin-top: 2rem;
+  }
+
+  .project-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.6rem;
+  }
+
+  .project-content .project-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .project-content .project-details {
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
+  .project-content .project-details ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .project-content .project-details ul li {
+    margin-right: 0;
+    font-size: 1.3rem;
+  }
+
+  .project-section .section-title {
+    padding-left: 0.5rem;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .project-title h2 {
+    font-size: 2.2rem;
+    margin-left: 0;
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .project-title h2::before,
+  .project-title h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .project-title h2::before {
+    width: 4rem;
+  }
+
+  .project-title h2::after {
+    width: 2rem;
+    margin-top: 0.6rem;
+  }
+
+}
